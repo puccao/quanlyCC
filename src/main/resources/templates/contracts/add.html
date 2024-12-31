@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Thêm hợp đồng</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/static/css/style.css}">
+    <script type="text/javascript" th:src="@{/static/js/script.js}"></script>
+</head>
+<body>
+    <h1>Thêm hợp đồng</h1>
+    <form th:action="@{/contracts/add}" th:object="${contract}" method="post">
+        <label>Tên người thuê:</label>
+        <input type="text" th:field="*{tenantName}" required /><br />
+        
+        <label>CMND/CCCD:</label>
+        <input type="text" th:field="*{tenantIdCard}" required /><br />
+        
+        <label>Căn hộ:</label>
+        <select th:field="*{apartmentId}" required>
+            <option value="" th:text="'Chọn căn hộ'">Chọn căn hộ</option>
+            <option th:each="apartment : ${apartments}" th:value="${apartment.id}" th:text="${apartment.name}"></option>
+        </select><br />
+        
+        <label>Ngày bắt đầu:</label>
+        <input type="date" th:field="*{startDate}" required /><br />
+        
+        <label>Ngày kết thúc:</label>
+        <input type="date" th:field="*{endDate}" required /><br />
+        
+        <label>Giá thuê:</label>
+        <input type="number" th:field="*{rentPrice}" required /><br />
+        
+        <button type="submit">Thêm</button>
+    </form>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Danh sách nhân viên</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/static/css/style.css}">
+    <script type="text/javascript" th:src="@{/static/js/script.js}"></script>
+</head>
+<body>
+    <h1>Danh sách nhân viên</h1>
+    <a href="/employees/add">Thêm nhân viên</a>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Tên</th>
+                <th>Chức vụ</th>
+                <th>Email</th>
+                <th>Số điện thoại</th>
+                <th>Lương</th>
+                <th>Hành động</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="employee : ${employees}">
+                <td th:text="${employee.name}"></td>
+                <td th:text="${employee.position}"></td>
+                <td th:text="${employee.email}"></td>
+                <td th:text="${employee.phoneNumber}"></td>
+                <td th:text="${employee.salary}"></td>
+                <td>
+                    <a th:href="@{/employees/edit/{id}(id=${employee.id})}">Chỉnh sửa</a>
+                    <a th:href="@{/employees/delete/{id}(id=${employee.id})}" onclick="return confirm('Bạn có chắc chắn muốn xóa?')">Xóa</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

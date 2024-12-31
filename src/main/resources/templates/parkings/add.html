@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Thêm phương tiện</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/static/css/style.css}">
+</head>
+<body>
+    <h1>Thêm phương tiện</h1>
+    <form th:action="@{/parkings/add}" th:object="${parking}" method="post">
+        <label>Biển số:</label>
+        <input type="text" th:field="*{vehicleNumber}" required /><br />
+        
+        <label>Loại xe:</label>
+        <input type="text" th:field="*{vehicleType}" required /><br />
+        
+        <label>Chủ sở hữu:</label>
+        <input type="text" th:field="*{ownerName}" required /><br />
+        
+        <label>Căn hộ:</label>
+        <input type="text" th:field="*{apartmentId}" /><br />
+        
+        <button type="submit">Lưu</button>
+    </form>
+    
+    <script type="text/javascript" th:src="@{/static/js/script.js}"></script>
+</body>
+</html>

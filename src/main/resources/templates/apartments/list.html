@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Danh sách căn hộ</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="/js/app.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            padding: 20px;
+            background-color: #007BFF;
+            color: white;
+            margin-bottom: 30px;
+        }
+        table {
+            width: 80%;
+            margin: 0 auto;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 10px;
+            text-align: center;
+            border: 1px solid #ccc;
+        }
+        th {
+            background-color: #007BFF;
+            color: white;
+        }
+        a {
+            text-decoration: none;
+            color: #007BFF;
+            font-weight: bold;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .actions a {
+            margin: 0 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Danh sách căn hộ</h1>
+    <div style="text-align: center;">
+        <a href="/apartments/add" style="padding: 10px 20px; background-color: #28a745; color: white; border-radius: 5px;">Thêm căn hộ</a>
+    </div>
+    <table>
+        <thead>
+            <tr>
+                <th>Tên</th>
+                <th>Tầng</th>
+                <th>Số phòng</th>
+                <th>Diện tích</th>
+                <th>Trạng thái</th>
+                <th>Hành động</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="apartment : ${apartments}">
+                <td th:text="${apartment.name}"></td>
+                <td th:text="${apartment.floor}"></td>
+                <td th:text="${apartment.rooms}"></td>
+                <td th:text="${apartment.area}"></td>
+                <td th:text="${apartment.isAvailable ? 'Còn trống' : 'Đã thuê'}"></td>
+                <td class="actions">
+                    <a th:href="@{/apartments/edit/{id}(id=${apartment.id})}">Chỉnh sửa</a>
+                    <a th:href="@{/apartments/delete/{id}(id=${apartment.id})}" onclick="return confirm('Bạn có chắc chắn muốn xóa?')">Xóa</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

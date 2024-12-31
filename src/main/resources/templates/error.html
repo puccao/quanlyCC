@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Oops! Lỗi xảy ra</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            text-align: center;
+            padding: 50px;
+        }
+        .error-container {
+            background-color: #ffcccc;
+            padding: 20px;
+            border-radius: 5px;
+            display: inline-block;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        .error-container h2 {
+            color: #ff0000;
+        }
+        .error-container p {
+            color: #333;
+        }
+        .home-link {
+            color: #007BFF;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .home-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="error-container">
+        <h2>Đã có lỗi xảy ra!</h2>
+        <p>Xin lỗi, trang bạn tìm kiếm không tồn tại hoặc có lỗi xảy ra khi xử lý yêu cầu của bạn.</p>
+        <p>Vui lòng quay lại <a class="home-link" th:href="@{/}">trang chủ</a>.</p>
+    </div>
+
+</body>
+</html>

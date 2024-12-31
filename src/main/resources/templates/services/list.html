@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Danh sách dịch vụ</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/static/css/style.css}">
+</head>
+<body>
+    <h1>Danh sách dịch vụ</h1>
+    <a href="/services/add">Thêm dịch vụ</a>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Tên dịch vụ</th>
+                <th>Mô tả</th>
+                <th>Giá</th>
+                <th>Trạng thái</th>
+                <th>Hành động</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="service : ${services}">
+                <td th:text="${service.name}"></td>
+                <td th:text="${service.description}"></td>
+                <td th:text="${service.price}"></td>
+                <td th:text="${service.status}"></td>
+                <td>
+                    <a th:href="@{/services/edit/{id}(id=${service.id})}">Chỉnh sửa</a>
+                    <a th:href="@{/services/delete/{id}(id=${service.id})}" onclick="return confirm('Bạn có chắc chắn muốn xóa?')">Xóa</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <script type="text/javascript" th:src="@{/static/js/script.js}"></script>
+</body>
+</html>

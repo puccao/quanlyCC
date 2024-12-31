@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Danh sách hợp đồng</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/static/css/style.css}">
+    <script type="text/javascript" th:src="@{/static/js/script.js}"></script>
+</head>
+<body>
+    <h1>Danh sách hợp đồng</h1>
+    <a href="/contracts/add">Thêm hợp đồng</a>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Người thuê</th>
+                <th>CMND/CCCD</th>
+                <th>Căn hộ</th>
+                <th>Ngày bắt đầu</th>
+                <th>Ngày kết thúc</th>
+                <th>Giá thuê</th>
+                <th>Trạng thái</th>
+                <th>Hành động</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="contract : ${contracts}">
+                <td th:text="${contract.tenantName}"></td>
+                <td th:text="${contract.tenantIdCard}"></td>
+                <td th:text="${contract.apartmentId}"></td>
+                <td th:text="${contract.startDate}"></td>
+                <td th:text="${contract.endDate}"></td>
+                <td th:text="${contract.rentPrice}"></td>
+                <td th:text="${contract.status}"></td>
+                <td>
+                    <a th:href="@{/contracts/edit/{id}(id=${contract.id})}">Chỉnh sửa</a>
+                    <a th:href="@{/contracts/delete/{id}(id=${contract.id})}" onclick="return confirm('Bạn có chắc chắn muốn xóa?')">Xóa</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

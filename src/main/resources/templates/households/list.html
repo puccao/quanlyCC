@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Danh sách hộ gia đình</title>
+    <!-- Liên kết đến tệp CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="/js/app.js"></script>
+</head>
+
+<body>
+    <h1>Danh sách hộ gia đình</h1>
+    <a href="/households/add">Thêm hộ gia đình</a>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Tên hộ gia đình</th>
+                <th>Căn hộ</th>
+                <th>Số điện thoại</th>
+                <th>Hành động</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="household : ${households}">
+                <td th:text="${household.householdName}"></td>
+                <td th:text="${household.apartmentId}"></td>
+                <td th:text="${household.contactNumber}"></td>
+                <td>
+                    <a th:href="@{/households/edit/{id}(id=${household.id})}">Chỉnh sửa</a>
+                    <a th:href="@{/households/delete/{id}(id=${household.id})}"
+                        onclick="return confirm('Bạn có chắc chắn muốn xóa?')">Xóa</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+
+</html>

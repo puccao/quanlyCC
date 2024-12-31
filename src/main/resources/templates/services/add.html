@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Thêm dịch vụ</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/static/css/style.css}">
+</head>
+<body>
+    <h1>Thêm dịch vụ</h1>
+    <form th:action="@{/services/add}" th:object="${service}" method="post">
+        <label>Tên dịch vụ:</label>
+        <input type="text" th:field="*{name}" required /><br />
+        
+        <label>Mô tả:</label>
+        <input type="text" th:field="*{description}" required /><br />
+        
+        <label>Giá:</label>
+        <input type="number" th:field="*{price}" required /><br />
+        
+        <label>Trạng thái:</label>
+        <select th:field="*{status}">
+            <option value="Active">Active</option>
+            <option value="Inactive">Inactive</option>
+        </select><br />
+        
+        <button type="submit">Thêm</button>
+    </form>
+    
+
+    <script type="text/javascript" th:src="@{/static/js/script.js}"></script>
+</body>
+</html>

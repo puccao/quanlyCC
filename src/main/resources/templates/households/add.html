@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Thêm hộ gia đình</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="/js/app.js"></script>
+</head>
+<body>
+    <h1>Thêm hộ gia đình</h1>
+    <form th:action="@{/households/add}" th:object="${household}" method="post">
+        <label>Tên hộ gia đình:</label>
+        <input type="text" th:field="*{householdName}" required /><br />
+        
+        <label>Căn hộ:</label>
+        <select th:field="*{apartmentId}">
+            <option th:each="apartment : ${apartments}" th:value="${apartment.id}" th:text="${apartment.name}"></option>
+        </select><br />
+        
+        <label>Số điện thoại:</label>
+        <input type="text" th:field="*{contactNumber}" required /><br />
+        
+        <h3>Thêm thành viên</h3>
+        <!-- Sử dụng th:each để duyệt qua các thành viên của hộ gia đình -->
+        <div th:each="member, iterStat : ${household.members}">
+            <label>Tên:</label>
+            <input type="text" th:field="*{members[__${iterStat.index}__].name}" required />
+            
+            <label>Tuổi:</label>
+            <input type="number" th:field="*{members[__${iterStat.index}__].age}" required />
+            
+            <label>Quan hệ:</label>
+            <input type="text" th:field="*{members[__${iterStat.index}__].relation}" required />
+        </div>
+        
+        <button type="submit">Thêm</button>
+    </form>
+</body>
+</html>

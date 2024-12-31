@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Danh sách phương tiện</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/static/css/style.css}">
+</head>
+<body>
+    <h1>Danh sách phương tiện</h1>
+    <a href="/parkings/add">Thêm phương tiện</a>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Biển số</th>
+                <th>Loại xe</th>
+                <th>Chủ sở hữu</th>
+                <th>Căn hộ</th>
+                <th>Thời gian vào</th>
+                <th>Thời gian ra</th>
+                <th>Phí gửi xe</th>
+                <th>Trạng thái</th>
+                <th>Hành động</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="parking : ${parkings}">
+                <td th:text="${parking.vehicleNumber}"></td>
+                <td th:text="${parking.vehicleType}"></td>
+                <td th:text="${parking.ownerName}"></td>
+                <td th:text="${parking.apartmentId}"></td>
+                <td th:text="${#dates.format(parking.entryTime, 'yyyy-MM-dd HH:mm')}"></td>
+                <td th:text="${#dates.format(parking.exitTime, 'yyyy-MM-dd HH:mm')}" th:if="${parking.exitTime != null}"></td>
+                <td th:text="${parking.parkingFee}"></td>
+                <td th:text="${parking.status}"></td>
+                <td>
+                    <a th:href="@{/parkings/checkout/{id}(id=${parking.id})}" th:if="${parking.status == 'In'}">Thanh toán</a>
+                    <a th:href="@{/parkings/delete/{id}(id=${parking.id})}" onclick="return confirm('Bạn có chắc chắn muốn xóa?')">Xóa</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <script type="text/javascript" th:src="@{/static/js/script.js}"></script>
+</body>
+</html>

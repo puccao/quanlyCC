@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Danh sách hóa đơn điện nước</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/static/css/style.css}">
+</head>
+<body>
+    <h1>Danh sách hóa đơn điện nước</h1>
+    <a href="/utility-bills/add">Thêm hóa đơn</a>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Căn hộ</th>
+                <th>Điện (kWh)</th>
+                <th>Nước (m³)</th>
+                <th>Chi phí điện</th>
+                <th>Chi phí nước</th>
+                <th>Tổng chi phí</th>
+                <th>Trạng thái</th>
+                <th>Hành động</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="bill : ${utilityBills}">
+                <td th:text="${bill.apartmentId}"></td>
+                <td th:text="${bill.electricityUsage}"></td>
+                <td th:text="${bill.waterUsage}"></td>
+                <td th:text="${bill.electricityCost}"></td>
+                <td th:text="${bill.waterCost}"></td>
+                <td th:text="${bill.totalCost}"></td>
+                <td th:text="${bill.status}"></td>
+                <td>
+                    <a th:href="@{/utility-bills/edit/{id}(id=${bill.id})}">Chỉnh sửa</a>
+                    <a th:href="@{/utility-bills/delete/{id}(id=${bill.id})}" onclick="return confirm('Bạn có chắc chắn muốn xóa?')">Xóa</a>
+                    <a th:href="@{/utility-bills/pay/{id}(id=${bill.id})}" th:if="${bill.status == 'Unpaid'}">Thanh toán</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <script type="text/javascript" th:src="@{/static/js/script.js}"></script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Thêm hóa đơn điện nước</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/static/css/style.css}">
+</head>
+<body>
+    <h1>Thêm hóa đơn điện nước</h1>
+    <form th:action="@{/utility-bills/add}" th:object="${utilityBill}" method="post">
+        <label>Căn hộ:</label>
+        <input type="text" th:field="*{apartmentId}" required /><br />
+        <label>Điện (kWh):</label>
+        <input type="number" step="0.01" th:field="*{electricityUsage}" required /><br />
+        <label>Chi phí điện:</label>
+        <input type="number" step="0.01" th:field="*{electricityCost}" required /><br />
+        <label>Nước (m³):</label>
+        <input type="number" step="0.01" th:field="*{waterUsage}" required /><br />
+        <label>Chi phí nước:</label>
+        <input type="number" step="0.01" th:field="*{waterCost}" required /><br />
+        <button type="submit">Lưu</button>
+    </form>
+
+    <script type="text/javascript" th:src="@{/static/js/script.js}"></script>
+</body>
+</html>
