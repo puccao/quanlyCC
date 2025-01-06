@@ -1,37 +1,152 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <title>Danh sách dịch vụ</title>
     <link rel="stylesheet" type="text/css" th:href="@{/static/css/style.css}">
+    <link rel="apple-touch-icon" href="/theme-assets/images/ico/apple-icon-120.png">
+    <link rel="shortcut icon" type="image/x-icon" href="/theme-assets/images/ico/favicon.ico">
+
+    <!-- BEGIN VENDOR CSS-->
+    <link rel="stylesheet" type="text/css" href="/theme-assets/css/vendors.css">
+    <!-- END VENDOR CSS-->
+    <!-- BEGIN CHAMELEON  CSS-->
+    <link rel="stylesheet" type="text/css" href="/theme-assets/css/app-lite.css">
+    <!-- END CHAMELEON  CSS-->
+    <!-- BEGIN Page Level CSS-->
+    <link rel="stylesheet" type="text/css" href="/theme-assets/css/core/menu/menu-types/vertical-menu.css">
+    <link rel="stylesheet" type="text/css" href="/theme-assets/css/core/colors/palette-gradient.css">
+    <!-- END Page Level CSS-->
+    <!-- BEGIN Custom CSS-->
+    <!-- END Custom CSS-->
 </head>
-<body>
-    <h1>Danh sách dịch vụ</h1>
-    <a href="/services/add">Thêm dịch vụ</a>
-    <table border="1">
-        <thead>
-            <tr>
-                <th>Tên dịch vụ</th>
-                <th>Mô tả</th>
-                <th>Giá</th>
-                <th>Trạng thái</th>
-                <th>Hành động</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr th:each="service : ${services}">
-                <td th:text="${service.name}"></td>
-                <td th:text="${service.description}"></td>
-                <td th:text="${service.price}"></td>
-                <td th:text="${service.status}"></td>
-                <td>
-                    <a th:href="@{/services/edit/{id}(id=${service.id})}">Chỉnh sửa</a>
-                    <a th:href="@{/services/delete/{id}(id=${service.id})}" onclick="return confirm('Bạn có chắc chắn muốn xóa?')">Xóa</a>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    
+
+<body class="vertical-layout vertical-menu 2-columns   menu-expanded fixed-navbar" data-open="click"
+    data-menu="vertical-menu" data-color="bg-chartbg" data-col="2-columns">
+
+    <div class="main-menu menu-fixed menu-light menu-accordion    menu-shadow " data-scroll-to-active="true"
+        data-img="/theme-assets/images/backgrounds/02.jpg">
+        <div class="navbar-header">
+            <ul class="nav navbar-nav flex-row">
+                <li class="nav-item mr-auto"><a class="navbar-brand" href="/"><img class="brand-logo"
+                            alt="Chameleon admin logo" src="/theme-assets/images/logo/logo.png" />
+                        <h3 class="brand-text">Quản lý chung cư</h3>
+                    </a></li>
+                <li class="nav-item d-md-none"><a class="nav-link close-navbar"><i class="ft-x"></i></a></li>
+            </ul>
+        </div>
+        <div class="main-menu-content">
+            <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
+                <li class="active"><a href="/"><i class="ft-home"></i><span class="menu-title" data-i18n="">Trang
+                            chủ</span></a>
+                </li>
+                <li class=" nav-item"><a th:href="@{/employees}"><i class="ft-pie-chart"></i><span class="menu-title"
+                            data-i18n="">Quản lý nhân viên</span></a>
+                </li>
+                <li class=" nav-item"><a th:href="@{/apartments}"><i class="ft-droplet"></i><span class="menu-title"
+                            data-i18n="">Quản lý căn hộ</span></a>
+                </li>
+                <li class=" nav-item"><a th:href="@{/contracts}"><i class="ft-layers"></i><span class="menu-title"
+                            data-i18n="">Quản lý hợp đồng</span></a>
+                </li>
+                <li class=" nav-item"><a th:href="@{/households}"><i class="ft-box"></i><span class="menu-title"
+                            data-i18n="">Quản lý hộ gia đình</span></a>
+                </li>
+                <li class=" nav-item"><a th:href="@{/services}"><i class="ft-bold"></i><span class="menu-title"
+                            data-i18n="">Quản lý dịch vụ</span></a>
+                </li>
+                <li class=" nav-item"><a th:href="@{/utility-bills}"><i class="ft-credit-card"></i><span
+                            class="menu-title" data-i18n="">Quản lý điện nước</span></a>
+                </li>
+                <li class=" nav-item"><a th:href="@{/parkings}"><i class="ft-layout"></i><span class="menu-title"
+                            data-i18n="">Quản lý bãi xe</span></a>
+                </li>
+            </ul>
+        </div>
+        <div class="navigation-background"></div>
+    </div>
+    <div class="app-content content">
+        <div class="content-wrapper">
+            <div class="content-body">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h1 class="card-title">Danh sách dịch vụ</h1>
+                            </div>
+                            <div class="card-content collapse show">
+                                <div class="card-body">
+                                    <a href="/services/add">Thêm dịch vụ</a>
+                                </div>
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead class="thead-dark">
+                                            <tr>
+                                                <th scope="col">Căn hộ sử dụng dịch vụ</th>
+                                                <th scope="col">Mô tả dịch vụ</th>
+                                                <th scope="col">Giá</th>
+                                                <th scope="col">Trạng thái</th>
+                                                <th scope="col">Hành động</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr scope="row" th:each="service : ${services}">
+                                                <td th:text="${service.name}"></td>
+                                                <td th:text="${service.description}"></td>
+                                                <td th:text="${service.price}"></td>
+                                                <td th:text="${service.status}"></td>
+                                                <td>
+                                                    <a th:href="@{/services/edit/{id}(id=${service.id})}">Chỉnh sửa</a>
+                                                    ||
+                                                    <a th:href="@{/services/delete/{id}(id=${service.id})}"
+                                                        onclick="return confirm('Bạn có chắc chắn muốn xóa?')">Xóa</a>
+                                                </td>
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <footer class="footer footer-static footer-light navbar-border navbar-shadow">
+        <div class="clearfix blue-grey lighten-2 text-sm-center mb-0 px-2"><span
+                class="float-md-left d-block d-md-inline-block">2018 &copy; Copyright <a
+                    class="text-bold-800 grey darken-2" href="https://themeselection.com"
+                    target="_blank">ThemeSelection</a></span>
+            <ul class="list-inline float-md-right d-block d-md-inline-blockd-none d-lg-block mb-0">
+                <li class="list-inline-item"><a class="my-1" href="https://themeselection.com/" target="_blank"> More
+                        themes</a></li>
+                <li class="list-inline-item"><a class="my-1" href="https://themeselection.com/support" target="_blank">
+                        Support</a></li>
+                <li class="list-inline-item"><a class="my-1"
+                        href="https://themeselection.com/products/chameleon-admin-modern-bootstrap-webapp-dashboard-html-template-ui-kit/"
+                        target="_blank"> Purchase</a></li>
+            </ul>
+        </div>
+    </footer>
     <script type="text/javascript" th:src="@{/static/js/script.js}"></script>
+
+    <!-- BEGIN VENDOR JS-->
+    <script src="/theme-assets/vendors/js/vendors.min.js" type="text/javascript"></script>
+    <!-- BEGIN VENDOR JS-->
+    <!-- BEGIN PAGE VENDOR JS-->
+    <script src="/theme-assets/vendors/js/charts/chartist.min.js" type="text/javascript"></script>
+    <!-- END PAGE VENDOR JS-->
+    <!-- BEGIN CHAMELEON  JS-->
+    <script src="/theme-assets/js/core/app-menu-lite.js" type="text/javascript"></script>
+    <script src="/theme-assets/js/core/app-lite.js" type="text/javascript"></script>
+    <!-- END CHAMELEON  JS-->
+    <!-- BEGIN PAGE LEVEL JS-->
+    <script src="/theme-assets/js/scripts/pages/dashboard-lite.js" type="text/javascript"></script>
+    <!-- END PAGE LEVEL JS-->
 </body>
+
 </html>
