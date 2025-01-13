@@ -148,31 +148,4 @@
     <!-- END PAGE LEVEL JS-->
 </body>
 
-<body>
-    <h1>Danh sách hộ gia đình</h1>
-    <a href="/households/add">Thêm hộ gia đình</a>
-    <table border="1">
-        <thead>
-            <tr>
-                <th>Tên hộ gia đình</th>
-                <th>Căn hộ</th>
-                <th>Số điện thoại</th>
-                <th>Hành động</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr th:each="household : ${households}">
-                <td th:text="${household.householdName}"></td>
-                <td th:text="${household.apartmentId}"></td>
-                <td th:text="${household.contactNumber}"></td>
-                <td>
-                    <a th:href="@{/households/edit/{id}(id=${household.id})}">Chỉnh sửa</a>
-                    <a th:href="@{/households/delete/{id}(id=${household.id})}"
-                        onclick="return confirm('Bạn có chắc chắn muốn xóa?')">Xóa</a>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-</body>
-
 </html>

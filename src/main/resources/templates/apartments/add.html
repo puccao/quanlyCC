@@ -142,30 +142,4 @@
     <!-- END PAGE LEVEL JS-->
 </body>
 
-<body>
-    <h1>Thêm Căn Hộ Mới</h1>
-    <form th:action="@{/apartments/add}" th:object="${apartment}" method="post">
-        <label>Tên căn hộ:</label>
-        <input type="text" th:field="*{name}" required /><br />
-
-        <label>Tầng:</label>
-        <input type="number" th:field="*{floor}" required /><br />
-
-        <label>Số phòng:</label>
-        <input type="number" th:field="*{rooms}" required /><br />
-
-        <label>Diện tích:</label>
-        <input type="number" th:field="*{area}" required /><br />
-
-        <label>Trạng thái:</label>
-        <select th:field="*{isAvailable}">
-            <option value="true">Còn trống</option>
-            <option value="false">Đã thuê</option>
-        </select><br />
-
-        <button type="submit">Thêm</button>
-    </form>
-
-</body>
-
 </html>
