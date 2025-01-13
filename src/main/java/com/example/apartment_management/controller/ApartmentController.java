@@ -7,18 +7,25 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Controller
 @RequestMapping("/apartments")
 public class ApartmentController {
     @Autowired
     private ApartmentService apartmentService;
 
+    // Trang danh sách căn hộ
     @GetMapping
     public String listApartments(Model model) {
-        model.addAttribute("apartments", apartmentService.getAllApartments());
-        return "apartments/list";
+        // Lấy danh sách tất cả các căn hộ
+        List<Apartment> apartments = apartmentService.getAllApartments();
+        model.addAttribute("apartments", apartments);
+
+        return "apartments/list"; // Chuyển hướng tới giao diện "list.html"
     }
 
+    // Thêm căn hộ
     @GetMapping("/add")
     public String addApartmentForm(Model model) {
         model.addAttribute("apartment", new Apartment());
@@ -31,6 +38,7 @@ public class ApartmentController {
         return "redirect:/apartments";
     }
 
+    // Chỉnh sửa căn hộ
     @GetMapping("/edit/{id}")
     public String editApartmentForm(@PathVariable String id, Model model) {
         Apartment apartment = apartmentService.getApartmentById(id);
@@ -45,6 +53,7 @@ public class ApartmentController {
         return "redirect:/apartments";
     }
 
+    // Xóa căn hộ
     @GetMapping("/delete/{id}")
     public String deleteApartment(@PathVariable String id) {
         apartmentService.deleteApartment(id);
