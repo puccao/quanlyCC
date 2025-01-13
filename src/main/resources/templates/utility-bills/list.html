@@ -103,14 +103,12 @@
                                                 <td th:text="${bill.totalCost}"></td>
                                                 <td th:text="${bill.status}"></td>
                                                 <td>
-                                                    <a th:href="@{/utility-bills/edit/{id}(id=${bill.id})}">Chỉnh
-                                                        sửa</a> ||
-                                                    <a th:href="@{/utility-bills/delete/{id}(id=${bill.id})}"
-                                                        onclick="return confirm('Bạn có chắc chắn muốn xóa?')">Xóa</a>
-                                                    ||
                                                     <a th:href="@{/utility-bills/pay/{id}(id=${bill.id})}"
                                                         th:if="${bill.status == 'Unpaid'}">Thanh
                                                         toán</a>
+                                                    ||
+                                                    <a th:href="@{/utility-bills/delete/{id}(id=${bill.id})}"
+                                                        onclick="return confirm('Bạn có chắc chắn muốn xóa?')">Xóa</a>
                                                 </td>
                                             </tr>
 

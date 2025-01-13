@@ -104,8 +104,6 @@
                                                 <td th:text="${contract.rentPrice}"></td>
                                                 <td th:text="${contract.status}"></td>
                                                 <td>
-                                                    <a th:href="@{/contracts/edit/{id}(id=${contract.id})}">Chỉnh
-                                                        sửa</a> ||
                                                     <a th:href="@{/contracts/delete/{id}(id=${contract.id})}"
                                                         onclick="return confirm('Bạn có chắc chắn muốn xóa?')">Xóa</a>
                                                 </td>

@@ -97,8 +97,6 @@
                                                 <td th:text="${household.apartmentId}"></td>
                                                 <td th:text="${household.contactNumber}"></td>
                                                 <td>
-                                                    <a th:href="@{/households/edit/{id}(id=${household.id})}">Chỉnh
-                                                        sửa</a> ||
                                                     <a th:href="@{/households/delete/{id}(id=${household.id})}"
                                                         onclick="return confirm('Bạn có chắc chắn muốn xóa?')">Xóa</a>
                                                 </td>

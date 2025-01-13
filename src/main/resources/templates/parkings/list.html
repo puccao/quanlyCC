@@ -87,7 +87,6 @@
                                                 <th scope="col">Loại xe</th>
                                                 <th scope="col">Chủ sở hữu</th>
                                                 <th scope="col">Thời gian vào</th>
-                                                <th scope="col">Thời gian ra</th>
                                                 <th scope="col">Phí gửi xe</th>
                                                 <th scope="col">Trạng thái</th>
                                                 <th scope="col">Hành động</th>
@@ -100,8 +99,6 @@
                                                 <td th:text="${parking.ownerName}"></td>
                                                 <td th:text="${#dates.format(parking.entryTime, 'yyyy-MM-dd HH:mm')}">
                                                 </td>
-                                                <td th:text="${#dates.format(parking.exitTime, 'yyyy-MM-dd HH:mm')}"
-                                                    th:if="${parking.exitTime != null}"></td>
                                                 <td th:text="${parking.parkingFee}"></td>
                                                 <td th:text="${parking.status}"></td>
                                                 <td>
