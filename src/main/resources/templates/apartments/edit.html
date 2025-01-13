@@ -143,29 +143,4 @@
     <!-- END PAGE LEVEL JS-->
 </body>
 
-<body>
-    <h1>Chỉnh sửa căn hộ</h1>
-    <form th:action="@{/apartments/edit/{id}(id=${apartment.id})}" th:object="${apartment}" method="post">
-        <label>Tên căn hộ:</label>
-        <input type="text" th:field="*{name}" required /><br />
-
-        <label>Tầng:</label>
-        <input type="number" th:field="*{floor}" required /><br />
-
-        <label>Số phòng:</label>
-        <input type="number" th:field="*{rooms}" required /><br />
-
-        <label>Diện tích:</label>
-        <input type="number" th:field="*{area}" required /><br />
-
-        <label>Trạng thái:</label>
-        <select th:field="*{isAvailable}">
-            <option value="true" th:selected="${apartment.isAvailable}">Còn trống</option>
-            <option value="false" th:selected="${!apartment.isAvailable}">Đã thuê</option>
-        </select><br />
-
-        <button type="submit">Cập nhật</button>
-    </form>
-</body>
-
 </html>
